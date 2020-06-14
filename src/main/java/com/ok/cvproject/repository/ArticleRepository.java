@@ -1,7 +1,12 @@
 package com.ok.cvproject.repository;
 
 import com.ok.cvproject.model.Article;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface ArticleRepository extends CrudRepository<Article, Long> {
+@Repository
+@Transactional
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 }

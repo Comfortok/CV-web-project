@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -43,30 +44,26 @@
                         </li>
                     </sec:authorize>
                     <li class="nav-item active">
-                        <form action="${pageContext.request.contextPath}/logout" method="post">
+                        <form:form action="${pageContext.request.contextPath}/logout" method="post">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-link">
                                 Logout
                             </button>
-                        </form>
+                        </form:form>
                     </li>
                 </c:when>
                 <c:otherwise>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/login">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/signin">
                             Login</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/registration">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/signup">
                             Sign Up</a>
                     </li>
                 </c:otherwise>
             </c:choose>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link" href="?lang=en"><spring:message code="header.en"/></a>
-            <a class="nav-link" href="?lang=ru"><spring:message code="header.ru"/></a>
-        </form>
     </div>
 </nav>
 <!-- Optional JavaScript -->

@@ -21,7 +21,7 @@ public class Article {
     private String text;
     private LocalDate releaseDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 

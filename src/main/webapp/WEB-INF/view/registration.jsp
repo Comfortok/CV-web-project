@@ -12,13 +12,21 @@
 
 <center>
     <div class="sign-form-center">
-        <form:form method="POST" modelAttribute="userForm" action="${pageContext.request.contextPath}/registration">
+        <form:form method="POST" modelAttribute="userForm" action="${pageContext.request.contextPath}/signup">
             <h2><spring:message code="registration.form"/></h2>
             <spring:bind path="username">
                 <label for="username"><spring:message code="registration.username"/></label>
                 <form:input type="text" path="username" cssClass="form-control" id="username" name="username"
                             required="required"/>
                 <form:errors path="username" cssClass="badge badge-danger"/>
+                <br>
+            </spring:bind>
+
+            <spring:bind path="email">
+                <label for="email"><spring:message code="registration.email"/></label>
+                <form:input type="text" path="email" cssClass="form-control" id="email" name="email"
+                            required="required"/>
+                <form:errors path="email" cssClass="badge badge-danger"/>
                 <br>
             </spring:bind>
 
@@ -42,6 +50,14 @@
         </form:form>
     </div>
 </center>
+
+<c:choose>
+    <c:when test="${not empty error}">
+        <div class="alert alert-danger" role="alert">
+            <c:out value="${error}"/>
+        </div>
+    </c:when>
+</c:choose>
 
 </body>
 </html>

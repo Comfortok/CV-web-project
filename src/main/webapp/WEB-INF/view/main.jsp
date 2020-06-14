@@ -76,15 +76,20 @@
             </form:form>
         </c:if>
 
-
+        1<c:out value="${requestScope.get('Authorization')}"/>
+        2<c:out value="${requestScope.get('SESSION_KEY')}"/>
+        3<c:out value="${pageContext.request.getAttribute('SESSION_KEY')}"/>
+        4<c:out value="${pageContext.request.getAttribute('Authorization')}"/>
+        5<c:out value="${pageContext.request.getHeader('Authorization')}"/>
     <br/>
 
-    <form method="post" action="${pageContext.request.contextPath}/add">
+    <form:form method="post" action="${pageContext.request.contextPath}/add">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="text" name="header" placeholder="Header">
         <input type="text" name="text" placeholder="Text">
+<%--        <input type="hidden" name="Authorization" value="">--%>
         <button type="submit">Send</button>
-    </form>
+    </form:form>
     </center>
 </div>
 </body>
