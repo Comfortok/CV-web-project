@@ -1,8 +1,6 @@
 package com.ok.cvproject.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,8 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(of = {"id"})
+@ToString(of = {"id", "username"})
 @NoArgsConstructor
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
@@ -28,15 +27,15 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(min=1, max = 16)
+    @Size(min = 1, max = 16)
     private String username;
 
     @NotBlank
-    @Size(min=1, max = 250)
+    @Size(min = 1, max = 250)
     private String password;
 
     @NotBlank
-    @Size(min=1, max = 16)
+    @Size(min = 1, max = 16)
     private String email;
     private boolean enabled;
 
@@ -49,20 +48,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REFRESH}, orphanRemoval = true)
-    Set<Article> articles;
+    @OneToMany
+    private Set<Article> articles;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", enabled=" + enabled +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", roles=" + roles +
-                ", articles=" + articles +
-                '}';
-    }
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private Set<Comment> comments;
+
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    private Cv cv;
 }

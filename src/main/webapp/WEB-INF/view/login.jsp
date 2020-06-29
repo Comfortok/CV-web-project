@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <html>
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}../css/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
     <c:import url="header.jsp" charEncoding="UTF-8"/>
@@ -45,7 +45,7 @@
 
 
 
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<%--            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
             <button type="submit" class="btn btn-primary">Log In</button>
         </form:form>
 

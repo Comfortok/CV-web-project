@@ -23,10 +23,13 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/main">Main</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/main">My CV</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/articles">Articles</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/main">All CV's</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/myCv">My CV</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/allCvs">All CV's</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/main">Settings</a>
@@ -45,7 +48,6 @@
                     </sec:authorize>
                     <li class="nav-item active">
                         <form:form action="${pageContext.request.contextPath}/logout" method="post">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-link">
                                 Logout
                             </button>

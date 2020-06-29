@@ -53,12 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/signin", "/signup", "/home").permitAll()
-                .antMatchers("/add", "/main").hasRole("USER")
+                .antMatchers("/", "/signin", "/signup", "/home").anonymous()
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/signin")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
